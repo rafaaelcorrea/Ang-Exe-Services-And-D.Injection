@@ -9,8 +9,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <title>Document</title>
 </head>
-<body>
+<body style="padding: 0 10px">
+    <br>
+    <p   [ngClass]="{'alert-danger': activeUsers.includes(inputUser)=== true ||
+     inactiveUsers.includes(inputUser)=== true}" #message id="message" class="alert">
+      Oops. This user already exists!
+    </p>
     <app-acitve-users-component  [users]="activeUsers"></app-acitve-users-component>
     <app-inacitve-users-component [users]="inactiveUsers"></app-inacitve-users-component>
+    <input style="padding: 0 5px;" type="text" [(ngModel)]="inputUser" #userName="ngModel">
+    <select [(ngModel)]="selectedValue" #typeUsers>
+      <option value="activeUsers">Active Users</option>
+      <option value="inactiveUsers"> Inactive Users</option> 
+    </select>
+    <br>
+    <br>
+    <button  class="btn btn-primary" (click)="sendUser()">Submit</button>
 </body>
 </html>
